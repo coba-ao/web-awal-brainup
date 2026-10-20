@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BrainUp - Bimbel CPNS, Kedinasan, TNI & POLRI</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --maroon:#5D0000;
+    --maroon-light:#7A1111;
+    --gold:#F4A259;
+    --gold-light:#FEF3C7;
+    --bg-base:#FDFBF7;
+    --bg-soft:#F5ECE8;
+    --white:#FFFFFF;
+    --text:#1E1E1E;
+    --muted:#6B7280;
+    --border:#E5E7EB;
+  }
+
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-base); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+  
+  /* FONT MONTSERRAT BLACK UNTUK SEMUA JUDUL */
+  h1, h2, h3, h4 { 
+    font-family: 'Montserrat', sans-serif !important; 
+    font-weight: 900 !important; 
+    letter-spacing: -0.5px; 
+    color: var(--maroon); 
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; }
+
+  /* CONTAINER */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAVBAR */
+  .navbar { background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand img { height: 50px; object-fit: contain; }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a { color: var(--text); font-weight: 600; font-size: 15px; transition: 0.3s; }
+  .nav-links a:hover { color: var(--maroon); }
+  .btn-nav { background: var(--maroon); color: #fff !important; padding: 10px 24px; border-radius: 8px; font-weight: 700; transition: 0.3s; }
+  .btn-nav:hover { background: var(--maroon-light); transform: translateY(-2px); }
+
+  /* HERO SECTION */
+  .hero {
+    position: relative; padding: 120px 0 140px 0;
+    background-image: url('https://i.imgur.com/z3Jajhh.png');
+    background-size: cover; background-position: center top;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(93, 0, 0, 0.98) 0%, rgba(93, 0, 0, 0.85) 60%, rgba(93, 0, 0, 0.6) 100%);
+    z-index: 1;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--bg-base)); z-index: 2;
+  }
+  
+  .hero-container { position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: center; min-height: 400px; max-width: 700px; }
+  
+  .hero-text h1 { font-size: 4.5rem; margin-bottom: 20px; color: #fff; text-shadow: 2px 4px 10px rgba(0,0,0,0.5); }
+  .hero-text h1 .block-text { display: block; font-size: 5.5rem; color: var(--gold); margin-top: -5px; }
+  .hero-text p { font-size: 1.2rem; color: #E5D5D5; margin-bottom: 40px; max-width: 90%; font-weight: 500;}
+  
+  .hero-buttons { display: flex; gap: 15px; }
+  .btn-primary { background: var(--gold); color: var(--maroon); padding: 16px 32px; border-radius: 10px; font-weight: 800; font-size: 16px; font-family: 'Outfit', sans-serif; transition: 0.3s; border: 2px solid var(--gold); display: inline-block; cursor: pointer;}
+  .btn-primary:hover { background: #D68A3C; border-color: #D68A3C; color: #fff; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(244, 162, 89, 0.3); }
+  .btn-secondary { background: transparent; color: #fff; padding: 16px 32px; border-radius: 10px; font-weight: 800; font-size: 16px; font-family: 'Outfit', sans-serif; border: 2px solid rgba(255,255,255,0.3); transition: 0.3s; display: inline-block; cursor: pointer;}
+  .btn-secondary:hover { border-color: #fff; background: #fff; color: var(--maroon); }
+  
+  /* SECTION PADDING */
+  .section-padding { padding: 100px 0; position: relative; }
+  .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; position: relative; z-index: 2;}
+  .section-header h2 { font-size: 3rem; margin-bottom: 15px; }
+  .section-header p { color: var(--muted); font-size: 1.1rem; }
+
+  /* BLOK 1: PROGRAM */
+  .bg-program {
+    background-image: url('https://i.imgur.com/3PYrXF0.png');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    position: relative;
+  }
+  .bg-program::before { content: ''; position: absolute; inset: 0; background: rgba(253, 251, 247, 0.85); z-index: 1; }
+  .bg-program .container { position: relative; z-index: 2; }
+
+  /* BLOK 2: FASILITAS */
+  .bg-fasilitas {
+    background-image: url('https://i.imgur.com/aVniq32.png');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    position: relative;
+  }
+  .bg-fasilitas::before { content: ''; position: absolute; inset: 0; background: rgba(253, 251, 247, 0.9); z-index: 1; }
+  .bg-fasilitas .container { position: relative; z-index: 2; }
+
+  /* BLOK 3: METODE */
+  .bg-metode {
+    background-image: url('https://i.imgur.com/7tm5guv.png');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    position: relative;
+  }
+  .bg-metode::before { content: ''; position: absolute; inset: 0; background: rgba(93, 0, 0, 0.85); z-index: 1; }
+  .bg-metode .container { position: relative; z-index: 2; }
+  .bg-metode .section-header h2 { color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+  .bg-metode .section-header p { color: #E5D5D5; }
+
+  /* BLOK 4: TESTIMONI */
+  .bg-testi { background: #fff; }
+
+  /* STYLING KARTU */
+  .grid-cards { display: grid; gap: 25px; position: relative; z-index: 2;}
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+  /* KARTU PROGRAM (FULL BACKGROUND GAMBAR) */
+  .card-program-full {
+    border-radius: 20px; overflow: hidden; position: relative; min-height: 320px;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 25px;
+    text-decoration: none; transition: 0.4s; border: 1px solid var(--border);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); background-size: cover; background-position: center;
+    cursor: pointer;
+  }
+  .card-program-full:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(93, 0, 0, 0.15); border-color: var(--maroon); }
+  
+  .bg-cpns { background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=400&auto=format&fit=crop'); }
+  .bg-kedinasan { background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=400&auto=format&fit=crop'); }
+  .bg-tni { background-image: url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=400&auto=format&fit=crop'); }
+  .bg-polri { background-image: url('https://images.unsplash.com/photo-1453873531674-2151bcd01707?q=80&w=400&auto=format&fit=crop'); }
+
+  .card-program-full::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(93, 0, 0, 0.95) 0%, rgba(93, 0, 0, 0.7) 50%, rgba(93, 0, 0, 0.2) 100%);
+    z-index: 1; transition: 0.3s;
+  }
+  .card-program-full:hover::before { background: linear-gradient(to top, rgba(93, 0, 0, 0.98) 0%, rgba(93, 0, 0, 0.8) 50%, rgba(93, 0, 0, 0.3) 100%); }
+
+  .card-program-content { position: relative; z-index: 2; }
+  .card-program-content h3 { font-size: 1.8rem; color: #fff; margin-bottom: 10px; }
+  .card-program-content p { font-size: 0.9rem; color: #E5D5D5; margin-bottom: 20px; line-height: 1.5; text-transform: none;}
+  .card-program-link { font-weight: 700; color: var(--gold); display: flex; align-items: center; gap: 6px; font-size: 0.9rem; transition: 0.3s; }
+  .card-program-full:hover .card-program-link { gap: 10px; }
+
+  /* KARTU FASILITAS (FULL BACKGROUND) */
+  .card-fasilitas-full {
+    border-radius: 20px; overflow: hidden; position: relative; min-height: 320px;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 25px;
+    transition: 0.4s; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    background-size: cover; background-position: center;
+  }
+  .card-fasilitas-full:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(93, 0, 0, 0.15); border-color: var(--maroon); }
+  
+  .bg-fas-zoom { background-image: url('https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?q=80&w=400&auto=format&fit=crop'); }
+  .bg-fas-tryout { background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=400&auto=format&fit=crop'); }
+  .bg-fas-modul { background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=400&auto=format&fit=crop'); }
+
+  .card-fasilitas-full::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(93, 0, 0, 0.95) 0%, rgba(93, 0, 0, 0.7) 50%, rgba(93, 0, 0, 0.2) 100%);
+    z-index: 1; transition: 0.3s;
+  }
+  .card-fasilitas-full:hover::before { background: linear-gradient(to top, rgba(93, 0, 0, 0.98) 0%, rgba(93, 0, 0, 0.8) 50%, rgba(93, 0, 0, 0.3) 100%); }
+
+  .card-fasilitas-content { position: relative; z-index: 2; }
+  .card-fasilitas-content h3 { font-size: 1.8rem; color: #fff; margin-bottom: 10px; }
+  .card-fasilitas-content p { font-size: 0.9rem; color: #E5D5D5; margin-bottom: 0; line-height: 1.5; text-transform: none;}
+
+  /* KARTU METODE */
+  .metode-card { 
+    padding: 40px 30px; border-radius: 20px; transition: 0.3s; 
+    position: relative; overflow: hidden; min-height: 220px; 
+    display: flex; flex-direction: column; justify-content: flex-end; 
+    border: 1px solid rgba(255,255,255,0.2);
+    background: #fff;
+  }
+  
+  .metode-card::before { 
+    content: ''; position: absolute; inset: 0; 
+    background: linear-gradient(to top, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0.85) 60%, rgba(255, 255, 255, 0.4) 100%); 
+    z-index: 1; transition: 0.3s; 
+  }
+  
+  .metode-card:hover::before { background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.95) 60%, rgba(255, 255, 255, 0.6) 100%); }
+  .metode-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--gold); }
+
+  .metode-card:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=600&auto=format&fit=crop'); background-size: cover; background-position: center; }
+  .metode-card:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop'); background-size: cover; background-position: center; }
+  .metode-card:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop'); background-size: cover; background-position: center; }
+  .metode-card:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop'); background-size: cover; background-position: center; }
+
+  .metode-content { position: relative; z-index: 2; }
+  .metode-card h3 { font-size: 1.6rem; margin-bottom: 10px; color: var(--maroon); }
+  .metode-card p { font-size: 1rem; color: var(--text); line-height: 1.7; text-transform: none;}
+
+  /* TESTIMONI */
+  .testi-card { background: var(--bg-soft); padding: 35px; border-radius: 20px; border: 1px solid var(--border); position: relative; transition: 0.3s;}
+  .testi-card:hover { background: #fff; border-color: var(--maroon); box-shadow: 0 10px 25px rgba(0,0,0,0.05);}
+  .testi-stars { color: var(--gold); font-size: 18px; margin-bottom: 15px; }
+  .testi-text { font-size: 1rem; color: var(--text); font-style: italic; margin-bottom: 25px; line-height: 1.8; }
+  .testi-user { display: flex; align-items: center; gap: 15px; }
+  .testi-avatar { width: 50px; height: 50px; background: var(--maroon); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Outfit', sans-serif; }
+  .testi-info h4 { font-family: 'Plus Jakarta Sans', sans-serif !important; font-size: 1rem; font-weight: 700; color: var(--maroon); margin-bottom: 2px; text-transform: none;}
+  .testi-info span { font-size: 0.85rem; color: var(--muted); }
+
+  /* CTA SECTION */
+  .cta-section { 
+    background-image: url('https://i.imgur.com/7tm5guv.png');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    border-radius: 30px; padding: 100px 40px; text-align: center; 
+    position: relative; overflow: hidden; margin: 0 24px 100px; 
+    max-width: 1200px; margin-left: auto; margin-right: auto;
+  }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(93, 0, 0, 0.95) 0%, rgba(93, 0, 0, 0.85) 100%); z-index: 1; }
+  .cta-section h2 { color: #fff; font-size: 3rem; margin-bottom: 20px; position: relative; z-index: 2; text-shadow: 0 2px 10px rgba(0,0,0,0.3);}
+  .cta-section p { color: #E5D5D5; font-size: 1.2rem; margin-bottom: 40px; position: relative; z-index: 2; max-width: 600px; margin-left: auto; margin-right: auto; }
+  .cta-section .btn-primary { background: var(--gold); border-color: var(--gold); color: var(--maroon); position: relative; z-index: 2; padding: 18px 40px; font-size: 1.1rem; }
+  .cta-section .btn-primary:hover { background: #D68A3C; border-color: #D68A3C; color: #fff;}
+
+  /* FOOTER */
+  footer { background: var(--maroon); color: #fff; padding: 80px 0 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+  .footer-brand .brand { margin-bottom: 20px; display: inline-flex;}
+  .footer-brand .brand img { border: none; height: 60px; border-radius: 8px; background: #fff; padding: 5px 15px; }
+  .footer-brand p { color: #E5D5D5; font-size: 0.95rem; max-width: 300px; margin-bottom: 25px; }
+  
+  .social-media { display: flex; gap: 15px; }
+  .social-media a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: 0.3s; border: 1px solid rgba(255,255,255,0.2); }
+  .social-media a:hover { background: var(--gold); color: var(--maroon); border-color: var(--gold); transform: translateY(-3px); }
+  
+  .footer-col h4 { font-family: 'Montserrat', sans-serif !important; font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 25px; text-transform: uppercase;}
+  .footer-col a { display: block; color: #E5D5D5; font-size: 0.95rem; margin-bottom: 15px; transition: 0.3s; }
+  .footer-col a:hover { color: var(--gold); padding-left: 5px; }
+  
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; color: #C5A5A5; font-size: 0.9rem; flex-wrap: wrap; gap: 15px; }
+
+  /* FLOATING WHATSAPP */
+  .float-wa { position: fixed; bottom: 30px; right: 30px; background: #22C55E; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(34,197,94,0.4); z-index: 999; transition: 0.3s; cursor: pointer; border: none; }
+  .float-wa:hover { transform: scale(1.1) rotate(10deg); background: #16A34A; }
+  .float-wa svg { width: 35px; height: 35px; fill: currentColor; }
+
+  /* MODAL WA */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay.active { display: flex; }
+  .modal-box { background: #fff; border-radius: 24px; width: 100%; max-width: 450px; padding: 35px 30px; text-align: left; box-shadow: 0 25px 60px rgba(0,0,0,0.4); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  
+  .modal-box h3 { text-align: center; font-size: 1.5rem; color: var(--maroon); margin-bottom: 10px; font-family: 'Montserrat', sans-serif !important; }
+  .modal-box p { text-align: center; font-size: 0.95rem; color: var(--muted); margin-bottom: 25px; }
+  
+  .form-group { margin-bottom: 15px; }
+  .form-group label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 5px; color: var(--text); }
+  .form-group input, .form-group select { width: 100%; padding: 12px 15px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.95rem; background: #F9FAFB; font-family: 'Plus Jakarta Sans', sans-serif; transition: 0.3s;}
+  .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--maroon); background: #fff;}
+  
+  .btn-wa-kirim { display: block; width: 100%; padding: 15px; background: #22C55E; color: #fff; border: none; border-radius: 12px; font-weight: 800; font-size: 1rem; cursor: pointer; margin-top: 15px; text-align: center; font-family: 'Outfit', sans-serif; transition: 0.3s;}
+  .btn-wa-kirim:hover { background: #16A34A; transform: translateY(-2px); }
+  .btn-tutup { background: transparent; color: #9CA3AF; border: none; font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-top: 15px; transition: 0.3s; width: 100%; text-align: center; }
+  .btn-tutup:hover { color: var(--maroon); }
+
+  /* MODAL PROGRAM */
+  .modal-prog-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 9998; align-items: center; justify-content: center; padding: 20px; }
+  .modal-prog-overlay.active { display: flex; }
+  
+  .modal-prog-box { 
+    background-image: url('https://i.imgur.com/3PYrXF0.png');
+    background-size: cover; background-position: center;
+    border-radius: 24px; width: 100%; max-width: 400px; padding: 30px; 
+    text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.4); 
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    position: relative; overflow: hidden;
+  }
+  
+  .modal-prog-box::before { content: ''; position: absolute; inset: 0; background: rgba(255, 255, 255, 0.9); z-index: 1; }
+  .modal-prog-box > * { position: relative; z-index: 2; }
+  
+  .modal-prog-box h3 { font-size: 1.6rem; color: var(--maroon); margin-bottom: 10px; }
+  .modal-prog-box p { font-size: 0.95rem; color: var(--muted); margin-bottom: 25px; }
+  
+  .pilihan-btn { display: flex; align-items: center; padding: 15px 20px; border-radius: 12px; text-decoration: none; text-align: left; margin-bottom: 12px; transition: 0.2s; font-weight: 700; font-size: 1rem; }
+  .pilihan-btn:hover { transform: scale(1.02); }
+  .pilihan-btn.materi { background: #E8F8F5; color: var(--maroon); }
+  .pilihan-btn.materi:hover { background: #D1F2EB; }
+  .pilihan-btn.latihan { background: #FEF3C7; color: var(--maroon); }
+  .pilihan-btn.latihan:hover { background: #FDE68A; }
+  
+  .pilihan-btn svg { width: 24px; height: 24px; margin-right: 15px; flex-shrink: 0; }
+  .pilihan-btn .text h4 { font-family: 'Plus Jakarta Sans', sans-serif !important; font-size: 1rem; font-weight: 800; margin-bottom: 2px; color: var(--maroon); text-transform: none; }
+  .pilihan-btn .text span { font-size: 0.8rem; opacity: 0.8; font-weight: 500; }
+  
+  .btn-batal-prog { background: transparent; border: none; color: #999; font-weight: 700; font-size: 0.9rem; cursor: pointer; margin-top: 10px; padding: 10px; width: 100%; transition: 0.2s; }
+  .btn-batal-prog:hover { color: var(--maroon); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .hero-container { max-width: 100%; text-align: center; }
+    .hero-text h1 { font-size: 3.5rem; }
+    .hero-text h1 .block-text { font-size: 4.5rem; }
+    .hero-buttons { justify-content: center; }
+    .hero::before { background: linear-gradient(to bottom, rgba(93, 0, 0, 0.95) 0%, rgba(93, 0, 0, 0.8) 100%); }
+    
+    .grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero { padding: 100px 0 80px 0; }
+    .hero-text h1 { font-size: 2.8rem; }
+    .hero-text h1 .block-text { font-size: 3.5rem; }
+    .hero-text p { margin: 0 auto 30px; font-size: 1rem; }
+    .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto;}
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+    
+    .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .cta-section { padding: 60px 20px; border-radius: 20px; margin-bottom: 60px; }
+    .cta-section h2 { font-size: 2rem; }
+    .float-wa { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+    .float-wa svg { width: 28px; height: 28px;}
+    .modal-box, .modal-prog-box { padding: 25px 20px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <img src="https://i.imgur.com/VXUBgjD.png" alt="Logo BrainUp">
+      </a>
+      <div class="nav-links">
+        <a href="#program">Program</a>
+        <a href="#fasilitas">Fasilitas</a>
+        <a href="#metode">Metode</a>
+        <a href="#testimoni">Testimoni</a>
+        <a href="https://wa.me/6281234567890" class="btn-nav">Konsultasi</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-container">
+        <div class="hero-text">
+          <h1>
+            Lolos
+            <span class="block-text">CPNS & Kedinasan</span>
+            Bukan Sekadar Mimpi.
+          </h1>
+          <p>Bimbingan belajar intensif dengan sistem CAT asli, tutor berpengalaman, dan strategi jitu untuk menembus seleksi CPNS, Sekolah Kedinasan, TNI, dan POLRI.</p>
+          <div class="hero-buttons">
+            <!-- LINK TRYOUT GRATIS -->
+            <a href="https://pilihan-to-skd.vercel.app/" target="_blank" class="btn-primary">Coba TryOut Gratis</a>
+            <button onclick="bukaModalWa()" class="btn-secondary">Konsultasi Sekarang</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOK 1: PROGRAM -->
+  <section class="section-padding bg-program" id="program">
+    <div class="container">
+      <div class="section-header">
+        <h2>Pilih Program Sesuai Targetmu</h2>
+        <p>Fokus pada satu tujuan, kuasai seluruh materinya bersama ahlinya.</p>
+      </div>
+      
+      <div class="grid-cards grid-4">
+        
+        <div class="card-program-full bg-cpns" onclick="bukaModalProgram('CPNS', 'https://web-skd-sigmora.vercel.app/', 'https://pilihan-to-skd.vercel.app/')">
+          <div class="card-program-content">
+            <h3>CPNS</h3>
+            <p>Persiapan Seleksi Kompetensi Dasar (SKD) dengan sistem CAT BKN asli, pembahasan TWK, TIU, dan TKP.</p>
+            <span class="card-program-link">Lihat Detail &rarr;</span>
+          </div>
+        </div>
+
+        <div class="card-program-full bg-kedinasan" onclick="bukaModalProgram('Kedinasan', 'https://web-skd-sigmora.vercel.app/', 'https://pilihan-to-skd.vercel.app/')">
+          <div class="card-program-content">
+            <h3>Kedinasan</h3>
+            <p>Bimbel khusus STAN, STIS, IPDN, dan Sekdin lainnya. Mulai dari SKD, TPA, TBI, hingga Psikotes.</p>
+            <span class="card-program-link">Lihat Detail &rarr;</span>
+          </div>
+        </div>
+
+        <div class="card-program-full bg-tni" onclick="bukaModalProgram('TNI', 'https://web-tni-sigmora.vercel.app/', 'https://pilihan-to-tni-sigmora.vercel.app/')">
+          <div class="card-program-content">
+            <h3>TNI</h3>
+            <p>Persiapan seleksi TNI (AD, AL, AU) mencakup Tes Akademik, Psikotes, dan Kesamaptaan Jasmani.</p>
+            <span class="card-program-link">Lihat Detail &rarr;</span>
+          </div>
+        </div>
+
+        <div class="card-program-full bg-polri" onclick="bukaModalProgram('POLRI', 'https://web-polri-sigmora-rcyn.vercel.app/', 'https://pilihan-to-polri-sigmoras.vercel.app/')">
+          <div class="card-program-content">
+            <h3>POLRI</h3>
+            <p>Bimbingan intensif untuk seleksi Polri. Fokus pada Akademik, Psikotes, dan persiapan fisik.</p>
+            <span class="card-program-link">Lihat Detail &rarr;</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOK 2: FASILITAS -->
+  <section class="section-padding bg-fasilitas" id="fasilitas">
+    <div class="container">
+      <div class="section-header">
+        <h2>Fasilitas Belajar Terbaik</h2>
+        <p>Kami menyediakan ekosistem belajar yang mendukung kesuksesanmu.</p>
+      </div>
+
+      <div class="grid-cards grid-3">
+        <div class="card-fasilitas-full bg-fas-zoom">
+          <div class="card-fasilitas-content">
+            <h3>Live Class via Zoom</h3>
+            <p>Belajar interaktif langsung bersama tutor. Bisa tanya-jawab secara langsung tanpa batas.</p>
+          </div>
+        </div>
+
+        <div class="card-fasilitas-full bg-fas-tryout">
+          <div class="card-fasilitas-content">
+            <h3>Akses TryOut 24/7</h3>
+            <p>Sistem tryout berbasis web yang bisa diakses kapan saja dan di mana saja menggunakan HP atau Laptop.</p>
+          </div>
+        </div>
+
+        <div class="card-fasilitas-full bg-fas-modul">
+          <div class="card-fasilitas-content">
+            <h3>Modul & Bank Soal</h3>
+            <p>Dapatkan akses ke ribuan soal HOTS terbaru beserta modul ringkasan materi eksklusif.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOK 3: METODE -->
+  <section class="section-padding bg-metode" id="metode">
+    <div class="container">
+      <div class="section-header">
+        <h2>Metode Belajar BrainUp</h2>
+        <p>Pendekatan yang terbukti berhasil membantu peserta tryout.</p>
+      </div>
+
+      <div class="grid-cards grid-2">
+        <div class="metode-card">
+          <div class="metode-content">
+            <h3>Analisis Kelemahan</h3>
+            <p>Kami petakan dulu di mana titik lemahmu melalui tryout awal, agar belajarmu tepat sasaran.</p>
+          </div>
+        </div>
+
+        <div class="metode-card">
+          <div class="metode-content">
+            <h3>Fokus Target</h3>
+            <p>Strategi belajar disesuaikan dengan passing grade dan sekolah/kampus impianmu.</p>
+          </div>
+        </div>
+
+        <div class="metode-card">
+          <div class="metode-content">
+            <h3>Pembahasan Konsep</h3>
+            <p>Bukan hanya kunci jawaban, tapi kami ajarkan cara berpikir dan trik cepat menyelesaikan soal.</p>
+          </div>
+        </div>
+
+        <div class="metode-card">
+          <div class="metode-content">
+            <h3>Evaluasi Berkala</h3>
+            <p>Laporan hasil belajar rutin diberikan agar kamu dan orang tua tahu progres yang dicapai.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOK 4: TESTIMONI -->
+  <section class="section-padding bg-testi" id="testimoni">
+    <div class="container">
+      <div class="section-header">
+        <h2>Kata Peserta TryOut Kami</h2>
+        <p>Umpan balik jujur dari mereka yang sudah mencoba sistem CAT dan Bank Soal BrainUp.</p>
+      </div>
+
+      <div class="grid-cards grid-3">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Gila sih, soal TIU-nya beneran HOTS. Susah tapi ngerasa dapet banget polanya. Pas ngerjain tryout, berasa kayak lagi ngerjain soal asli BKN. Worth it!"</p>
+          <div class="testi-user">
+            <div class="testi-avatar">AN</div>
+            <div class="testi-info">
+              <h4>Andi Nugraha</h4>
+              <span>Peserta TryOut SKD</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Awalnya kaget soalnya susah, tapi pas baca pembahasannya ternyata logikanya dapet. Katanya sih ini sesuai FR peserta-peserta sebelumnya. Jadi lebih siap buat ujian asli."</p>
+          <div class="testi-user">
+            <div class="testi-avatar">SR</div>
+            <div class="testi-info">
+              <h4>Siti Rahma</h4>
+              <span>Peserta TryOut STIS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Banyak yang bilang tryout di sini soalnya susah dan bikin pusing. Tapi justru itu yang bikin gw ketagihan belajar. Sistem CAT-nya mulus, skornya keluar langsung. Mantap!"</p>
+          <div class="testi-user">
+            <div class="testi-avatar">BP</div>
+            <div class="testi-info">
+              <h4>Bayu Pratama</h4>
+              <span>Peserta TryOut Polri</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <h2>Siap Uji Kemampuanmu?</h2>
+    <p>Jangan cuma dengar kata orang. Buktikan sendiri bahwa soal BrainUp memang HOTS dan mirip dengan ujian asli.</p>
+    <button onclick="bukaModalWa()" class="btn-primary">Coba TryOut Sekarang</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <a href="#" class="brand">
+            <img src="https://i.imgur.com/VXUBgjD.png" alt="Logo BrainUp">
+          </a>
+          <p>Platform bimbel dan TryOut modern untuk persiapan CPNS, Kedinasan, TNI, dan POLRI. Soal HOTS, sesuai FR, dan mirip ujian asli.</p>
+          <div class="social-media">
+            <a href="https://www.instagram.com/" target="_blank" title="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://www.tiktok.com/" target="_blank" title="TikTok">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/" target="_blank" title="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.582 6.186a2.6 2.6 0 0 0-1.838-1.84C18.16 4 12 4 12 4s-6.16 0-7.744.346a2.6 2.6 0 0 0-1.838 1.84C2 7.78 2 12 2 12s0 4.22.418 5.814a2.6 2.6 0 0 0 1.838 1.84C5.84 20 12 20 12 20s6.16 0 7.744-.346a2.6 2.6 0 0 0 1.838-1.84C22 16.22 22 12 22 12s0-4.22-.418-5.814zM9.996 15.464V8.536L16 12l-6.004 3.464z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Program</h4>
+          <a href="#">CPNS</a>
+          <a href="#">Kedinasan</a>
+          <a href="#">TNI</a>
+          <a href="#">POLRI</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Perusahaan</h4>
+          <a href="#">Tentang Kami</a>
+          <a href="#">Blog Edukasi</a>
+          <a href="#">Karier</a>
+          <a href="#">Kontak</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Bantuan</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Pusat Bantuan</a>
+          <a href="#">Kebijakan Privasi</a>
+          <a href="#">Syarat & Ketentuan</a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 BrainUp. All rights reserved.</div>
+        <div>Dibuat dengan ❤️ untuk generasi unggul Indonesia.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <button onclick="bukaModalWa()" class="float-wa" title="Hubungi Admin">
+    <svg viewBox="0 0 24 24"><path d="M12.031 2C6.51 2 2.014 6.496 2.014 12.017c0 1.766.461 3.49 1.336 5.012L2 22l5.108-1.338A9.968 9.968 0 0012.03 22c5.521 0 10.017-4.496 10.017-10.017S17.552 2 12.031 2zm5.223 14.03c-.222.625-1.286 1.196-1.762 1.242-.476.047-1.065.21-3.488-1.007-2.914-1.466-4.763-4.478-4.908-4.68-.144-.203-1.166-1.554-1.166-2.966 0-1.412.735-2.104 1.003-2.392.268-.288.587-.36.783-.36.196 0 .392.004.563.013.183.01.43-.07.67.515.245.595.833 2.053.908 2.203.075.15.125.325.025.525-.1.2-.375.604-.6.83-.225.225-.35.375-.225.6.125.225.556.917 1.192 1.486.816.728 1.504.955 1.717 1.062.212.107.338.088.463-.054.125-.142.535-.625.678-.838.143-.213.286-.178.48-.104.195.074 1.238.584 1.45.69.212.107.35.16.4.25.05.09.05.522-.172 1.147z"/></svg>
+  </button>
+
+  <!-- MODAL WA -->
+  <div class="modal-overlay" id="modalWa">
+    <div class="modal-box">
+      <h3>Konsultasi Bimbel</h3>
+      <p>Isi data singkat ini agar Admin kami bisa memberikan rekomendasi terbaik untukmu.</p>
+      
+      <form id="formWa" onsubmit="kirimWa(event)">
+        <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" id="waNama" placeholder="Masukkan nama Anda" required>
+        </div>
+        <div class="form-group">
+          <label>Asal Kota / Sekolah</label>
+          <input type="text" id="waAsal" placeholder="Contoh: SMAN 1 Jakarta" required>
+        </div>
+        <div class="form-group">
+          <label>Pilihan Program</label>
+          <select id="waProgram" required>
+            <option value="" disabled selected>Pilih program...</option>
+            <option value="Bimbel Reguler">Bimbel Reguler</option>
+            <option value="Bimbel Privat">Bimbel Privat (1-on-1)</option>
+            <option value="Kelas Online / Zoom">Kelas Online / Zoom</option>
+            <option value="TryOut & Pembahasan">Beli Paket TryOut</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Target / Kelas</label>
+          <select id="waTarget" required>
+            <option value="" disabled selected>Pilih target...</option>
+            <option value="CPNS">CPNS</option>
+            <option value="Kedinasan (STAN/STIS/IPDN)">Kedinasan (STAN/STIS/IPDN)</option>
+            <option value="TNI">TNI (AD / AL / AU)</option>
+            <option value="POLRI">POLRI</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-wa-kirim">Kirim & Chat Admin</button>
+        <button type="button" class="btn-tutup" onclick="tutupModalWa()">Batal</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL PROGRAM -->
+  <div class="modal-prog-overlay" id="modalProgram">
+    <div class="modal-prog-box">
+      <h3 id="progTitle">CPNS</h3>
+      <p>Kamu mau belajar materinya atau langsung coba latihan?</p>
+      
+      <a href="#" id="linkMateri" target="_blank" class="pilihan-btn materi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <div class="text">
+          <h4>Lihat Materi Belajar</h4>
+          <span>Baca modul & nonton video</span>
+        </div>
+      </a>
+
+      <a href="#" id="linkLatihan" target="_blank" class="pilihan-btn latihan">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        <div class="text">
+          <h4>Latihan Soal / TryOut</h4>
+          <span>Kerjakan soal ujian</span>
+        </div>
+      </a>
+
+      <button class="btn-batal-prog" onclick="tutupModalProgram()">Nanti Saja</button>
+    </div>
+  </div>
+
+  <script>
+    // --- SCRIPT MODAL WA ---
+    function bukaModalWa() {
+      document.getElementById('modalWa').classList.add('active');
+    }
+
+    function tutupModalWa() {
+      document.getElementById('modalWa').classList.remove('active');
+    }
+
+    document.getElementById('modalWa').addEventListener('click', function(e) { 
+      if (e.target === this) { tutupModalWa(); } 
+    });
+
+    function kirimWa(event) {
+      event.preventDefault(); 
+      const NOMOR_WA_ADMIN = "6281234567890"; 
+      const nama = document.getElementById('waNama').value;
+      const asal = document.getElementById('waAsal').value;
+      const program = document.getElementById('waProgram').value;
+      const target = document.getElementById('waTarget').value;
+
+      const pesan = `Halo Admin BrainUp,%0A%0ASaya ingin konsultasi mengenai bimbel.%0A%0A*Nama:* ${nama}%0A*Asal/Kota:* ${asal}%0A*Program:* ${program}%0A*Target:* ${target}%0A%0AMohon info selengkapnya ya Kak. Terima kasih!`;
+      const urlWa = `https://wa.me/${NOMOR_WA_ADMIN}?text=${pesan}`;
+      window.open(urlWa, '_blank');
+      tutupModalWa();
+    }
+
+    // --- SCRIPT MODAL PROGRAM (MATERI / LATIHAN) ---
+    function bukaModalProgram(nama, linkMateri, linkLatihan) {
+      document.getElementById('progTitle').innerText = nama;
+      document.getElementById('linkMateri').href = linkMateri;
+      document.getElementById('linkLatihan').href = linkLatihan;
+      document.getElementById('modalProgram').classList.add('active');
+    }
+
+    function tutupModalProgram() {
+      document.getElementById('modalProgram').classList.remove('active');
+    }
+
+    document.getElementById('modalProgram').addEventListener('click', function(e) { 
+      if (e.target === this) { tutupModalProgram(); } 
+    });
+  </script>
+
+</body>
+</html>
