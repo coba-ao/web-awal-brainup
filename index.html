@@ -38,9 +38,8 @@
 
   /* NAVBAR */
   .navbar { background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-  .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; position: relative; }
   
-  /* BRAND + LATIHAN PSIKOTES */
   .brand-group { display: flex; align-items: center; gap: 20px; }
   .brand { display: flex; align-items: center; gap: 10px; }
   .brand img { height: 50px; object-fit: contain; }
@@ -62,20 +61,93 @@
   }
   .btn-nav:hover { background: var(--maroon-light); transform: translateY(-2px); }
 
+  /* === HAMBURGER & MOBILE MENU === */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+  }
+  .nav-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--maroon);
+    border-radius: 3px;
+    transition: 0.3s;
+  }
+  .nav-toggle.active span:nth-child(1) {
+    transform: translateY(9.5px) rotate(45deg);
+  }
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle.active span:nth-child(3) {
+    transform: translateY(-9.5px) rotate(-45deg);
+  }
+
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    padding: 16px 24px 20px;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 99;
+    animation: slideDown 0.25s ease;
+  }
+  .mobile-menu.active { display: flex; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .mobile-menu a {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    transition: 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--maroon); padding-left: 5px; }
+  .mobile-menu .btn-nav {
+    margin-top: 8px;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+  }
+
   /* HERO SECTION */
   .hero {
     position: relative; padding: 120px 0 140px 0;
-    background-image: url('https://i.imgur.com/z3Jajhh.png');
+    background-image: url('https://i.imgur.com/S9IOJfC.png');
     background-size: cover; background-position: center top;
   }
   .hero::before {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(93, 0, 0, 0.98) 0%, rgba(93, 0, 0, 0.85) 60%, rgba(93, 0, 0, 0.6) 100%);
+    background: linear-gradient(135deg, rgba(93, 0, 0, 0.75) 0%, rgba(93, 0, 0, 0.677) 60%, rgba(93, 0, 0, 0.6) 100%);
     z-index: 1;
   }
   
   .hero-container { position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: center; min-height: 400px; max-width: 700px; }
   
+  .hero-badge {
+    display: inline-block; background: rgba(244,162,89,0.15); color: var(--gold); 
+    border: 1px solid rgba(244,162,89,0.4); padding: 8px 18px; border-radius: 50px;
+    font-weight: 700; font-size: 0.9rem; margin-bottom: 20px; letter-spacing: 0.5px;
+    font-family: 'Outfit', sans-serif; width: fit-content;
+  }
   .hero-text h1 { font-size: 4.5rem; margin-bottom: 20px; color: #fff; text-shadow: 2px 4px 10px rgba(0,0,0,0.5); }
   .hero-text h1 .block-text { display: block; font-size: 5.5rem; color: var(--gold); margin-top: -5px; }
   .hero-text p { font-size: 1.2rem; color: #E5D5D5; margin-bottom: 40px; max-width: 90%; font-weight: 500;}
@@ -94,35 +166,37 @@
 
   /* BLOK 1: PROGRAM */
   .bg-program {
-    background-image: url('https://i.imgur.com/3PYrXF0.png');
+    background-image: url('https://i.imgur.com/tTDJRv8.png');
     background-size: cover; background-position: center; background-attachment: fixed;
     position: relative;
   }
-  .bg-program::before { content: ''; position: absolute; inset: 0; background: rgba(253, 251, 247, 0.85); z-index: 1; }
+  .bg-program::before { content: ''; position: absolute; inset: 0; background: rgba(248, 223, 223, 0.879); z-index: 1; }
   .bg-program .container { position: relative; z-index: 2; }
 
   /* BLOK 2: FASILITAS */
   .bg-fasilitas {
-    background-image: url('https://i.imgur.com/aVniq32.png');
+    background-image: url('https://i.imgur.com/0RJPKD8.png');
     background-size: cover; background-position: center; background-attachment: fixed;
     position: relative;
   }
-  .bg-fasilitas::before { content: ''; position: absolute; inset: 0; background: rgba(253, 251, 247, 0.9); z-index: 1; }
+  .bg-fasilitas::before { content: ''; position: absolute; inset: 0; background: rgba(93, 0, 0, 0.849); z-index: 1; }
   .bg-fasilitas .container { position: relative; z-index: 2; }
+  .bg-fasilitas .section-header h2 { color: var(--gold); text-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+  .bg-fasilitas .section-header p { color: var(--gold-light); }
 
   /* BLOK 3: METODE */
   .bg-metode {
-    background-image: url('https://i.imgur.com/7tm5guv.png');
+    background-image: url('https://i.imgur.com/TX0ZZ3P.png');
     background-size: cover; background-position: center; background-attachment: fixed;
     position: relative;
   }
-  .bg-metode::before { content: ''; position: absolute; inset: 0; background: rgba(93, 0, 0, 0.85); z-index: 1; }
+  .bg-metode::before { content: ''; position: absolute; inset: 0; background: rgba(244, 233, 233, 0.775); z-index: 1; }
   .bg-metode .container { position: relative; z-index: 2; }
-  .bg-metode .section-header h2 { color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-  .bg-metode .section-header p { color: #E5D5D5; }
+  .bg-metode .section-header h2 { color: var(--maroon); text-shadow: none; }
+  .bg-metode .section-header p { color: var(--maroon-light); }
 
-  /* BLOK 4: TESTIMONI */
-  .bg-testi { background: #fff; }
+  /* BLOK 4: CONTOH SOAL */
+  .bg-contoh { background: #fff; }
 
   /* STYLING KARTU */
   .grid-cards { display: grid; gap: 25px; position: relative; z-index: 2;}
@@ -130,24 +204,24 @@
   .grid-3 { grid-template-columns: repeat(3, 1fr); }
   .grid-2 { grid-template-columns: repeat(2, 1fr); }
 
-  /* KARTU PROGRAM (FULL BACKGROUND GAMBAR) */
+  /* KARTU PROGRAM */
   .card-program-full {
     border-radius: 20px; overflow: hidden; position: relative; min-height: 320px;
     display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 25px;
     text-decoration: none; transition: 0.4s; border: 1px solid var(--border);
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); background-size: cover; background-position: center;
+    box-shadow: 0 4px 6px -1px rgba(159, 55, 55, 0.612); background-size: cover; background-position: center;
     cursor: pointer;
   }
-  .card-program-full:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(93, 0, 0, 0.15); border-color: var(--maroon); }
+  .card-program-full:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(202, 46, 46, 0.15); border-color: var(--maroon); }
   
-  .bg-cpns { background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=400&auto=format&fit=crop'); }
-  .bg-kedinasan { background-image: url('https://i.imgur.com/7tm5guv.png'); }
-  .bg-tni { background-image: url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=400&auto=format&fit=crop'); }
-  .bg-polri { background-image: url('https://images.unsplash.com/photo-1453873531674-2151bcd01707?q=80&w=400&auto=format&fit=crop'); }
+  .bg-cpns { background-image: url('https://i.imgur.com/D0AX42k.png'); }
+  .bg-kedinasan { background-image: url('https://i.imgur.com/SIQHe9Q.png'); }
+  .bg-tni { background-image: url('https://i.imgur.com/r5GCubs.png'); }
+  .bg-polri { background-image: url('https://i.imgur.com/1kQzDsD.png'); }
 
   .card-program-full::before {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(93, 0, 0, 0.629) 0%, rgba(93, 0, 0, 0.7) 50%, rgba(93, 0, 0, 0.2) 100%);
+    background: linear-gradient(to top, rgba(93, 0, 0, 0.9) 0%, rgba(93, 0, 0, 0.7) 50%, rgba(93, 0, 0, 0.2) 100%);
     z-index: 1; transition: 0.3s;
   }
   .card-program-full:hover::before { background: linear-gradient(to top, rgba(93, 0, 0, 0.98) 0%, rgba(93, 0, 0, 0.8) 50%, rgba(93, 0, 0, 0.3) 100%); }
@@ -158,7 +232,7 @@
   .card-program-link { font-weight: 700; color: var(--gold); display: flex; align-items: center; gap: 6px; font-size: 0.9rem; transition: 0.3s; }
   .card-program-full:hover .card-program-link { gap: 10px; }
 
-  /* KARTU FASILITAS (FULL BACKGROUND) */
+  /* KARTU FASILITAS */
   .card-fasilitas-full {
     border-radius: 20px; overflow: hidden; position: relative; min-height: 320px;
     display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 25px;
@@ -206,18 +280,153 @@
   .metode-card:nth-child(4) { background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop'); background-size: cover; background-position: center; }
 
   .metode-content { position: relative; z-index: 2; }
+  .metode-num { font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 10px; }
   .metode-card h3 { font-size: 1.6rem; margin-bottom: 10px; color: var(--maroon); }
   .metode-card p { font-size: 1rem; color: var(--text); line-height: 1.7; text-transform: none;}
 
-  /* TESTIMONI */
-  .testi-card { background: var(--bg-soft); padding: 35px; border-radius: 20px; border: 1px solid var(--border); position: relative; transition: 0.3s;}
-  .testi-card:hover { background: #fff; border-color: var(--maroon); box-shadow: 0 10px 25px rgba(0,0,0,0.05);}
-  .testi-stars { color: var(--gold); font-size: 18px; margin-bottom: 15px; }
-  .testi-text { font-size: 1rem; color: var(--text); font-style: italic; margin-bottom: 25px; line-height: 1.8; }
-  .testi-user { display: flex; align-items: center; gap: 15px; }
-  .testi-avatar { width: 50px; height: 50px; background: var(--maroon); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: 'Outfit', sans-serif; }
-  .testi-info h4 { font-family: 'Plus Jakarta Sans', sans-serif !important; font-size: 1rem; font-weight: 700; color: var(--maroon); margin-bottom: 2px; text-transform: none;}
-  .testi-info span { font-size: 0.85rem; color: var(--muted); }
+  /* CONTOH SOAL — TAB */
+  .soal-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .soal-tab {
+    padding: 12px 32px;
+    border-radius: 50px;
+    border: 2px solid var(--border);
+    background: #fff;
+    color: var(--maroon);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 0.5px;
+  }
+  .soal-tab:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .soal-tab.active {
+    background: var(--maroon);
+    color: #fff;
+    border-color: var(--maroon);
+    box-shadow: 0 8px 20px rgba(93, 0, 0, 0.25);
+  }
+
+  .soal-panel { display: none; }
+  .soal-panel.active { display: block; animation: fadeIn 0.35s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* KARTU SOAL */
+  .soal-slides { max-width: 780px; margin: 0 auto; }
+  .soal-card { background: var(--bg-base); border: 1px solid var(--border); border-radius: 20px; padding: 30px; transition: 0.3s; }
+  .soal-badge { display: inline-block; background: var(--maroon); color: #fff; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 0.8rem; padding: 5px 15px; border-radius: 8px; margin-bottom: 18px; letter-spacing: 0.5px; }
+  .soal-card h4 { font-family: 'Plus Jakarta Sans', sans-serif !important; font-size: 1rem; font-weight: 700; color: var(--text); text-transform: none; margin-bottom: 18px; line-height: 1.5; }
+  .soal-options { list-style: none; margin-bottom: 18px; }
+  .soal-options li { font-size: 0.92rem; color: var(--text); padding: 6px 0; line-height: 1.5; }
+  .soal-options li.correct { color: #16A34A; font-weight: 700; }
+  .soal-options li.correct::after { content: ' ✓'; }
+  .soal-pembahasan { background: var(--gold-light); border-left: 4px solid var(--gold); padding: 15px 18px; border-radius: 10px; font-size: 0.88rem; color: var(--maroon); line-height: 1.6; }
+  .soal-pembahasan strong { font-weight: 800; }
+
+  /* NAVIGASI SOAL */
+  .soal-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    max-width: 780px;
+    margin: 30px auto 0;
+    padding: 0 5px;
+  }
+  .soal-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: 2px solid var(--maroon);
+    background: #fff;
+    color: var(--maroon);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .soal-nav-btn:hover:not(:disabled) {
+    background: var(--maroon);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(93, 0, 0, 0.2);
+  }
+  .soal-nav-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    border-color: var(--border);
+    color: var(--muted);
+  }
+  .soal-nav-counter {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--maroon);
+    letter-spacing: 0.5px;
+  }
+
+  /* SLIDE CTA (slide terakhir) */
+  .soal-cta-slide {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 45px 35px;
+    background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-light) 100%);
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .soal-cta-slide::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -20%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(244,162,89,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .soal-cta-slide h3 {
+    color: #fff;
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 2;
+  }
+  .soal-cta-slide p {
+    color: #E5D5D5;
+    font-size: 1rem;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .soal-cta-slide .btn-primary {
+    position: relative;
+    z-index: 2;
+    padding: 15px 38px;
+    font-size: 1rem;
+  }
+  .soal-cta-slide .soal-cta-note {
+    display: block;
+    margin-top: 15px;
+    color: var(--gold-light);
+    font-size: 0.85rem;
+    position: relative;
+    z-index: 2;
+  }
 
   /* CTA SECTION */
   .cta-section { 
@@ -232,6 +441,9 @@
   .cta-section p { color: #E5D5D5; font-size: 1.2rem; margin-bottom: 40px; position: relative; z-index: 2; max-width: 600px; margin-left: auto; margin-right: auto; }
   .cta-section .btn-primary { background: var(--gold); border-color: var(--gold); color: var(--maroon); position: relative; z-index: 2; padding: 18px 40px; font-size: 1.1rem; }
   .cta-section .btn-primary:hover { background: #D68A3C; border-color: #D68A3C; color: #fff;}
+  .cta-features { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 35px; position: relative; z-index: 2; }
+  .cta-features span { color: #E5D5D5; font-size: 0.95rem; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+  .cta-features span::before { content: '✓'; color: var(--gold); font-weight: 900; font-size: 1.1rem; }
 
   /* FOOTER */
   footer { background: var(--maroon); color: #fff; padding: 80px 0 30px; }
@@ -247,6 +459,9 @@
   .footer-col h4 { font-family: 'Montserrat', sans-serif !important; font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 25px; text-transform: uppercase;}
   .footer-col a { display: block; color: #E5D5D5; font-size: 0.95rem; margin-bottom: 15px; transition: 0.3s; }
   .footer-col a:hover { color: var(--gold); padding-left: 5px; }
+
+  /* Wrapper untuk kolom footer (desktop: contents, mobile: grid 2 kolom) */
+  .footer-cols-wrapper { display: contents; }
   
   .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; color: #C5A5A5; font-size: 0.9rem; flex-wrap: wrap; gap: 15px; }
 
@@ -258,7 +473,7 @@
   /* MODAL WA */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.active { display: flex; }
-  .modal-box { background: #fff; border-radius: 24px; width: 100%; max-width: 450px; padding: 35px 30px; text-align: left; box-shadow: 0 25px 60px rgba(0,0,0,0.4); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  .modal-box { background: #fff; border-radius: 24px; width: 100%; max-width: 450px; padding: 35px 30px; text-align: left; box-shadow: 0 25px 60px rgba(0,0,0,0.4); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-height: 90vh; overflow-y: auto;}
   @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
   
   .modal-box h3 { text-align: center; font-size: 1.5rem; color: var(--maroon); margin-bottom: 10px; font-family: 'Montserrat', sans-serif !important; }
@@ -307,37 +522,321 @@
   .btn-batal-prog { background: transparent; border: none; color: #999; font-weight: 700; font-size: 0.9rem; cursor: pointer; margin-top: 10px; padding: 10px; width: 100%; transition: 0.2s; }
   .btn-batal-prog:hover { color: var(--maroon); }
 
-  /* RESPONSIVE */
+  /* ============================================ */
+  /* RESPONSIVE — MOBILE & TABLET FRIENDLY       */
+  /* ============================================ */
+
+  /* === TABLET (≤ 1024px) === */
   @media (max-width: 1024px) {
     .hero-container { max-width: 100%; text-align: center; }
-    .hero-text h1 { font-size: 3.5rem; }
-    .hero-text h1 .block-text { font-size: 4.5rem; }
+    .hero-badge { margin-left: auto; margin-right: auto; }
+    .hero-text h1 { font-size: 3.2rem; }
+    .hero-text h1 .block-text { font-size: 4rem; }
+    .hero-text p { margin-left: auto; margin-right: auto; }
     .hero-buttons { justify-content: center; }
-    .hero::before { background: linear-gradient(to bottom, rgba(93, 0, 0, 0.95) 0%, rgba(93, 0, 0, 0.8) 100%); }
+    .hero::before { background: linear-gradient(to bottom, rgba(93, 0, 0, 0.75) 0%, rgba(93, 0, 0, 0.677) 100%); }
     
     .grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    
+    .section-header h2 { font-size: 2.5rem; }
   }
 
+  /* === MOBILE BESAR / TABLET KECIL (≤ 768px) === */
   @media (max-width: 768px) {
+    /* --- NAVBAR --- */
+    .navbar { position: sticky; }
+    .nav-inner { height: 64px; gap: 10px; }
+    .brand-group { gap: 8px; flex: 1; min-width: 0; }
+    .brand img { height: 36px; }
+    .link-psikotes { 
+      font-size: 11px; 
+      padding: 6px 10px; 
+      gap: 4px;
+      white-space: nowrap;
+      flex-shrink: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .nav-links { display: none; }
-    .brand-group { gap: 10px; }
-    .link-psikotes { font-size: 12px; padding: 6px 12px; }
-    .hero { padding: 100px 0 80px 0; }
-    .hero-text h1 { font-size: 2.8rem; }
-    .hero-text h1 .block-text { font-size: 3.5rem; }
-    .hero-text p { margin: 0 auto 30px; font-size: 1rem; }
-    .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto;}
-    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+    .nav-toggle { display: flex; }
     
-    .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-    .footer-bottom { flex-direction: column; text-align: center; }
-    .cta-section { padding: 60px 20px; border-radius: 20px; margin-bottom: 60px; }
-    .cta-section h2 { font-size: 2rem; }
-    .float-wa { width: 50px; height: 50px; bottom: 20px; right: 20px; }
-    .float-wa svg { width: 28px; height: 28px;}
-    .modal-box, .modal-prog-box { padding: 25px 20px; }
+    /* --- HERO --- */
+    .hero { padding: 70px 0 60px 0; }
+    .hero-badge { font-size: 0.72rem; padding: 6px 14px; margin-bottom: 16px; }
+    .hero-text h1 { font-size: 2.2rem; line-height: 1.15; margin-bottom: 14px; }
+    .hero-text h1 .block-text { font-size: 2.8rem; }
+    .hero-text p { font-size: 0.95rem; margin-bottom: 28px; line-height: 1.6; padding: 0 4px; }
+    .hero-buttons { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; gap: 10px; }
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 14px 20px; font-size: 15px; }
+    
+    /* --- SECTION --- */
+    .section-padding { padding: 60px 0; }
+    .section-header { margin-bottom: 40px; padding: 0 4px; }
+    .section-header h2 { font-size: 1.9rem; line-height: 1.25; }
+    .section-header p { font-size: 0.95rem; line-height: 1.6; }
+    
+    /* --- GRID --- */
+    .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; gap: 18px; }
+    
+    /* --- KARTU PROGRAM --- */
+    .card-program-full { min-height: 220px; padding: 24px 22px; }
+    .card-program-content h3 { font-size: 1.5rem; }
+    .card-program-content p { font-size: 0.88rem; margin-bottom: 14px; }
+    
+    /* --- KARTU FASILITAS --- */
+    .card-fasilitas-full { min-height: 220px; padding: 24px 22px; }
+    .card-fasilitas-content h3 { font-size: 1.5rem; }
+    .card-fasilitas-content p { font-size: 0.88rem; }
+    
+    /* --- KARTU METODE --- */
+    .metode-card { padding: 28px 22px; min-height: 180px; }
+    .metode-card h3 { font-size: 1.3rem; }
+    .metode-card p { font-size: 0.92rem; }
+    .metode-num { font-size: 2.4rem; }
+    
+    /* --- CONTOH SOAL: TAB --- */
+    .soal-tabs { gap: 8px; margin-bottom: 28px; }
+    .soal-tab { padding: 10px 22px; font-size: 0.88rem; border-radius: 50px; }
+    
+    /* --- CONTOH SOAL: KARTU --- */
+    .soal-card { padding: 24px 20px; border-radius: 16px; }
+    .soal-badge { font-size: 0.7rem; padding: 5px 12px; margin-bottom: 14px; }
+    .soal-card h4 { font-size: 0.95rem; margin-bottom: 14px; line-height: 1.5; }
+    .soal-options li { font-size: 0.88rem; padding: 5px 0; }
+    .soal-pembahasan { font-size: 0.82rem; padding: 12px 14px; margin-top: 14px; }
+    
+    /* --- CONTOH SOAL: NAVIGASI --- */
+    .soal-nav { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 10px; 
+      margin-top: 20px; 
+      padding: 0;
+    }
+    .soal-nav-counter { 
+      grid-column: 1 / -1; 
+      order: -1; 
+      text-align: center; 
+      font-size: 0.85rem; 
+      margin-bottom: 4px;
+    }
+    .soal-nav-btn { 
+      padding: 12px 14px; 
+      font-size: 0.85rem; 
+      justify-content: center; 
+      width: 100%;
+    }
+    
+    /* --- CTA SLIDE --- */
+    .soal-cta-slide { padding: 32px 22px; border-radius: 16px; }
+    .soal-cta-slide h3 { font-size: 1.25rem; }
+    .soal-cta-slide p { font-size: 0.9rem; margin-bottom: 20px; }
+    .soal-cta-slide .btn-primary { padding: 13px 26px; font-size: 0.92rem; width: 100%; max-width: 280px; }
+    .soal-cta-slide .soal-cta-note { font-size: 0.78rem; }
+    
+    /* --- CTA SECTION --- */
+    .cta-section { 
+      padding: 40px 22px; 
+      border-radius: 18px; 
+      margin: 0 14px 50px; 
+      background-attachment: scroll;
+    }
+    .cta-section h2 { font-size: 1.7rem; line-height: 1.25; margin-bottom: 14px; }
+    .cta-section p { font-size: 0.92rem; margin-bottom: 24px; line-height: 1.6; padding: 0 4px; }
+    .cta-section .btn-primary { 
+      padding: 14px 24px; 
+      font-size: 0.92rem; 
+      width: 100%; 
+      max-width: 280px;
+      display: inline-block;
+    }
+    .cta-features { 
+      flex-direction: row; 
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 16px; 
+      margin-top: 22px; 
+    }
+    .cta-features span { 
+      font-size: 0.78rem; 
+      gap: 5px;
+    }
+    .cta-features span::before { font-size: 0.9rem; }
+    
+    /* --- FOOTER --- */
+    footer { padding: 50px 0 25px; }
+    .footer-grid { 
+      grid-template-columns: 1fr; 
+      gap: 28px; 
+      margin-bottom: 32px; 
+    }
+    .footer-brand { text-align: center; }
+    .footer-brand .brand { 
+      margin-bottom: 14px; 
+      display: inline-flex; 
+      justify-content: center;
+    }
+    .footer-brand .brand img { 
+      height: 44px; 
+      padding: 4px 14px;
+    }
+    .footer-brand p { 
+      font-size: 0.85rem; 
+      max-width: 100%; 
+      margin-bottom: 18px;
+      padding: 0 8px;
+      line-height: 1.6;
+    }
+    .social-media { justify-content: center; }
+    .social-media a { width: 36px; height: 36px; }
+    .social-media a svg { width: 17px; height: 17px; }
+    
+    /* Footer columns jadi 2 kolom grid biar ringkas */
+    .footer-cols-wrapper { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 24px; 
+    }
+    .footer-col h4 { 
+      margin-bottom: 12px; 
+      font-size: 0.92rem; 
+      letter-spacing: 0.5px;
+    }
+    .footer-col a { 
+      font-size: 0.85rem; 
+      margin-bottom: 10px; 
+      display: inline-block;
+    }
+    .footer-bottom { 
+      flex-direction: column; 
+      text-align: center; 
+      gap: 6px; 
+      font-size: 0.78rem; 
+      padding-top: 20px;
+      line-height: 1.5;
+    }
+    
+    /* --- FLOATING WA --- */
+    .float-wa { width: 52px; height: 52px; bottom: 18px; right: 18px; }
+    .float-wa svg { width: 28px; height: 28px; }
+    
+    /* --- MODAL WA --- */
+    .modal-overlay { padding: 12px; align-items: flex-start; padding-top: 30px; }
+    .modal-box { padding: 26px 20px; border-radius: 18px; max-height: 85vh; }
+    .modal-box h3 { font-size: 1.25rem; }
+    .modal-box p { font-size: 0.88rem; margin-bottom: 20px; }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { font-size: 0.8rem; }
+    .form-group input, .form-group select { padding: 11px 13px; font-size: 0.9rem; }
+    .btn-wa-kirim { padding: 13px; font-size: 0.95rem; margin-top: 12px; }
+    .btn-tutup { font-size: 0.88rem; margin-top: 10px; }
+    
+    /* --- MODAL PROGRAM --- */
+    .modal-prog-overlay { padding: 12px; align-items: flex-start; padding-top: 40px; }
+    .modal-prog-box { padding: 26px 20px; border-radius: 18px; max-width: 100%; }
+    .modal-prog-box h3 { font-size: 1.35rem; }
+    .modal-prog-box p { font-size: 0.88rem; margin-bottom: 20px; }
+    .pilihan-btn { padding: 13px 16px; margin-bottom: 10px; }
+    .pilihan-btn .text h4 { font-size: 0.92rem; }
+    .pilihan-btn .text span { font-size: 0.75rem; }
+    .pilihan-btn svg { width: 20px; height: 20px; margin-right: 12px; }
+  }
+
+  /* === MOBILE KECIL (≤ 480px) === */
+  @media (max-width: 480px) {
+    .container { padding: 0 16px; }
+    
+    /* --- NAVBAR --- */
+    .nav-inner { height: 58px; gap: 6px; }
+    .brand img { height: 30px; }
+    .link-psikotes { 
+      font-size: 10px; 
+      padding: 5px 8px;
+      max-width: 140px;
+    }
+    .nav-toggle { width: 26px; height: 20px; }
+    .nav-toggle span { height: 2.5px; }
+    .nav-toggle.active span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+    .nav-toggle.active span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
+    
+    /* --- HERO --- */
+    .hero { padding: 60px 0 50px 0; }
+    .hero-badge { font-size: 0.65rem; padding: 5px 12px; }
+    .hero-text h1 { font-size: 1.8rem; }
+    .hero-text h1 .block-text { font-size: 2.3rem; }
+    .hero-text p { font-size: 0.88rem; }
+    .btn-primary, .btn-secondary { padding: 13px 18px; font-size: 14px; }
+    
+    /* --- SECTION --- */
+    .section-padding { padding: 50px 0; }
+    .section-header h2 { font-size: 1.6rem; }
+    .section-header p { font-size: 0.88rem; }
+    
+    /* --- KARTU --- */
+    .card-program-full, .card-fasilitas-full { min-height: 200px; padding: 20px 18px; }
+    .card-program-content h3, .card-fasilitas-content h3 { font-size: 1.3rem; }
+    .card-program-content p, .card-fasilitas-content p { font-size: 0.82rem; }
+    
+    .metode-card { padding: 24px 18px; min-height: 160px; }
+    .metode-card h3 { font-size: 1.15rem; }
+    .metode-card p { font-size: 0.85rem; }
+    .metode-num { font-size: 2rem; }
+    
+    /* --- CONTOH SOAL --- */
+    .soal-tabs { gap: 6px; }
+    .soal-tab { padding: 9px 18px; font-size: 0.82rem; }
+    .soal-card { padding: 20px 16px; }
+    .soal-card h4 { font-size: 0.9rem; }
+    .soal-options li { font-size: 0.84rem; }
+    .soal-pembahasan { font-size: 0.78rem; padding: 11px 13px; }
+    .soal-nav-btn { padding: 10px 12px; font-size: 0.8rem; }
+    .soal-nav-counter { font-size: 0.78rem; }
+    
+    /* --- CTA SLIDE --- */
+    .soal-cta-slide { padding: 28px 18px; }
+    .soal-cta-slide h3 { font-size: 1.1rem; }
+    .soal-cta-slide p { font-size: 0.85rem; }
+    .soal-cta-slide .btn-primary { padding: 12px 22px; font-size: 0.88rem; }
+    
+    /* --- CTA SECTION --- */
+    .cta-section { 
+      padding: 34px 18px; 
+      border-radius: 16px; 
+      margin: 0 12px 44px; 
+    }
+    .cta-section h2 { font-size: 1.45rem; margin-bottom: 12px; }
+    .cta-section p { font-size: 0.85rem; margin-bottom: 20px; }
+    .cta-section .btn-primary { 
+      padding: 13px 20px; 
+      font-size: 0.88rem;
+      max-width: 100%;
+    }
+    .cta-features { 
+      flex-direction: column; 
+      align-items: center;
+      gap: 8px; 
+      margin-top: 18px; 
+    }
+    .cta-features span { font-size: 0.76rem; }
+    
+    /* --- FOOTER --- */
+    footer { padding: 44px 0 22px; }
+    .footer-grid { gap: 24px; margin-bottom: 26px; }
+    .footer-brand .brand img { height: 40px; }
+    .footer-brand p { font-size: 0.8rem; margin-bottom: 16px; }
+    .social-media a { width: 34px; height: 34px; }
+    .social-media a svg { width: 16px; height: 16px; }
+    .footer-cols-wrapper { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .footer-col h4 { font-size: 0.85rem; margin-bottom: 10px; }
+    .footer-col a { font-size: 0.8rem; margin-bottom: 8px; }
+    .footer-bottom { font-size: 0.72rem; padding-top: 18px; gap: 4px; }
+    
+    /* --- MODAL --- */
+    .modal-box, .modal-prog-box { padding: 22px 16px; }
+    .modal-box h3 { font-size: 1.15rem; }
+    .modal-prog-box h3 { font-size: 1.2rem; }
   }
 </style>
 </head>
@@ -351,15 +850,32 @@
           <img src="https://i.imgur.com/VXUBgjD.png" alt="Logo BrainUp">
         </a>
         <!-- LINK LATIHAN PSIKOTES GRATIS -->
-        <a href="https://web-psikotes-brainup.vercel.app/" class="link-psikotes">Latihan Psikotes Gratis</a>
+        <a href="https://pilihan-psikotes-bu.vercel.app/" class="link-psikotes">Latihan Psikotes Gratis</a>
       </div>
+
+      <!-- Tombol Hamburger (muncul di mobile) -->
+      <button class="nav-toggle" id="navToggle" onclick="toggleMenu()" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Nav Links (desktop) -->
       <div class="nav-links">
         <a href="#program">Program</a>
         <a href="#fasilitas">Fasilitas</a>
         <a href="#metode">Metode</a>
-        <a href="#testimoni">Testimoni</a>
-        <!-- TOMBOL KONSULTASI: BUKA MODAL BIODATA -->
+        <a href="#contoh-soal">Contoh Soal</a>
         <button onclick="bukaModalWa()" class="btn-nav">Konsultasi</button>
+      </div>
+
+      <!-- Menu Mobile (dropdown) -->
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#program" onclick="tutupMenu()">Program</a>
+        <a href="#fasilitas" onclick="tutupMenu()">Fasilitas</a>
+        <a href="#metode" onclick="tutupMenu()">Metode</a>
+        <a href="#contoh-soal" onclick="tutupMenu()">Contoh Soal</a>
+        <button onclick="tutupMenu(); bukaModalWa();" class="btn-nav">Konsultasi</button>
       </div>
     </div>
   </nav>
@@ -369,12 +885,12 @@
     <div class="container">
       <div class="hero-container">
         <div class="hero-text">
+          <span class="hero-badge">Bimbel · Kedinasan · TNI · POLRI</span>
           <h1>
-            Lolos
-            <span class="block-text">CPNS & Kedinasan</span>
-            Bukan Sekadar Mimpi.
+            Lolos Seleksi
+            <span class="block-text">Bukan Sekadar Mimpi.</span>
           </h1>
-          <p>Bimbingan belajar intensif dengan sistem CAT asli, tutor berpengalaman, dan strategi jitu untuk menembus seleksi CPNS, Sekolah Kedinasan, TNI, dan POLRI.</p>
+          <p>Bimbel intensif dengan sistem CAT asli, tutor berpengalaman, dan strategi jitu untuk menembus seleksi CPNS, Kedinasan, TNI, dan POLRI.</p>
           <div class="hero-buttons">
             <a href="https://pilihan-to-skd.vercel.app/" class="btn-primary">Coba TryOut Gratis</a>
             <button onclick="bukaModalWa()" class="btn-secondary">Konsultasi Sekarang</button>
@@ -394,38 +910,38 @@
       
       <div class="grid-cards grid-4">
         
-        <!-- TOMBOL CPNS -->
+        <!-- CPNS -->
         <div class="card-program-full bg-cpns" onclick="bukaModalProgram('CPNS', 'https://materi-cpns-bu.vercel.app/', 'https://pilihan-to-cpns-bu.vercel.app/')">
           <div class="card-program-content">
             <h3>CPNS</h3>
-            <p>Persiapan SKD CAT BKN: TWK, TIU, dan TKP.</p>
+            <p>Persiapan SKD CAT BKN: TWK, TIU, dan TKP dengan pembahasan mendalam.</p>
             <span class="card-program-link">Lihat Detail &rarr;</span>
           </div>
         </div>
 
-        <!-- TOMBOL KEDINASAN -->
+        <!-- KEDINASAN -->
         <a href="https://pilihan-kelas-kedinasan.vercel.app/" class="card-program-full bg-kedinasan">
           <div class="card-program-content">
             <h3>Kedinasan</h3>
-            <p>Persiapan STAN, STIS, IPDN, dan Sekdin lainnya.</p>
+            <p>Bimbel khusus STAN, STIS, IPDN, dan Sekdin lainnya: SKD, TPA, TBI, Psikotes.</p>
             <span class="card-program-link">Lihat Detail &rarr;</span>
           </div>
         </a>
 
-        <!-- TOMBOL TNI -->
+        <!-- TNI -->
         <div class="card-program-full bg-tni" onclick="bukaModalProgram('TNI', 'https://materi-tni-bu.vercel.app/', 'https://pilihan-to-tni-bu-virid.vercel.app/')">
           <div class="card-program-content">
             <h3>TNI</h3>
-            <p>Persiapan akademik, psikotes, dan jasmani TNI AD, AL, AU.</p>
+            <p>Persiapan akademik, psikotes, dan kesamaptaan jasmani TNI AD, AL, AU.</p>
             <span class="card-program-link">Lihat Detail &rarr;</span>
           </div>
         </div>
 
-        <!-- TOMBOL POLRI -->
+        <!-- POLRI -->
         <div class="card-program-full bg-polri" onclick="bukaModalProgram('POLRI', 'https://materi-polri-bu.vercel.app/', 'https://pilihan-to-polri-bu.vercel.app/')">
           <div class="card-program-content">
             <h3>POLRI</h3>
-            <p>Persiapan tes akademik, psikotes, dan fisik Polri.</p>
+            <p>Bimbingan intensif seleksi Polri: akademik, psikotes, dan persiapan fisik.</p>
             <span class="card-program-link">Lihat Detail &rarr;</span>
           </div>
         </div>
@@ -439,28 +955,28 @@
     <div class="container">
       <div class="section-header">
         <h2>Fasilitas Belajar Terbaik</h2>
-        <p>Kami menyediakan ekosistem belajar yang mendukung kesuksesanmu.</p>
+        <p>Ekosistem belajar yang mendukung kesuksesanmu.</p>
       </div>
 
       <div class="grid-cards grid-3">
         <div class="card-fasilitas-full bg-fas-zoom">
           <div class="card-fasilitas-content">
             <h3>Live Class via Zoom</h3>
-            <p>Belajar interaktif langsung bersama tutor. Bisa tanya-jawab secara langsung tanpa batas.</p>
+            <p>Belajar interaktif langsung bersama tutor. Tanya-jawab tanpa batas, rekaman tersedia.</p>
           </div>
         </div>
 
         <div class="card-fasilitas-full bg-fas-tryout">
           <div class="card-fasilitas-content">
-            <h3>Akses TryOut 24/7</h3>
-            <p>Sistem tryout berbasis web yang bisa diakses kapan saja dan di mana saja menggunakan HP atau Laptop.</p>
+            <h3>TryOut Online Kapan Saja</h3>
+            <p>Sistem tryout berbasis web, bisa diakses kapan saja dari HP atau laptop. Skor keluar langsung.</p>
           </div>
         </div>
 
         <div class="card-fasilitas-full bg-fas-modul">
           <div class="card-fasilitas-content">
             <h3>Modul & Bank Soal</h3>
-            <p>Dapatkan akses ke ribuan soal HOTS terbaru beserta modul ringkasan materi eksklusif.</p>
+            <p>Ribuan soal HOTS terbaru beserta modul ringkasan materi eksklusif siap unduh.</p>
           </div>
         </div>
       </div>
@@ -472,19 +988,21 @@
     <div class="container">
       <div class="section-header">
         <h2>Metode Belajar BrainUp</h2>
-        <p>Pendekatan yang terbukti berhasil membantu peserta tryout.</p>
+        <p>Pendekatan 4 langkah yang terbukti membantu peserta tryout.</p>
       </div>
 
       <div class="grid-cards grid-2">
         <div class="metode-card">
           <div class="metode-content">
+            <div class="metode-num">01</div>
             <h3>Analisis Kelemahan</h3>
-            <p>Kami petakan dulu di mana titik lemahmu melalui tryout awal, agar belajarmu tepat sasaran.</p>
+            <p>Kami petakan dulu titik lemahmu lewat tryout awal, agar belajarmu tepat sasaran.</p>
           </div>
         </div>
 
         <div class="metode-card">
           <div class="metode-content">
+            <div class="metode-num">02</div>
             <h3>Fokus Target</h3>
             <p>Strategi belajar disesuaikan dengan passing grade dan sekolah/kampus impianmu.</p>
           </div>
@@ -492,64 +1010,305 @@
 
         <div class="metode-card">
           <div class="metode-content">
+            <div class="metode-num">03</div>
             <h3>Pembahasan Konsep</h3>
-            <p>Bukan hanya kunci jawaban, tapi kami ajarkan cara berpikir dan trik cepat menyelesaikan soal.</p>
+            <p>Bukan hanya kunci jawaban — kami ajarkan cara berpikir dan trik cepat menyelesaikan soal.</p>
           </div>
         </div>
 
         <div class="metode-card">
           <div class="metode-content">
+            <div class="metode-num">04</div>
             <h3>Evaluasi Berkala</h3>
-            <p>Laporan hasil belajar rutin diberikan agar kamu dan orang tua tahu progres yang dicapai.</p>
+            <p>Laporan hasil belajar rutin agar kamu dan orang tua tahu progres yang dicapai.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BLOK 4: TESTIMONI -->
-  <section class="section-padding bg-testi" id="testimoni">
+<!-- BLOK 4: CONTOH SOAL -->
+  <section class="section-padding bg-contoh" id="contoh-soal">
     <div class="container">
       <div class="section-header">
-        <h2>Kata Peserta TryOut Kami</h2>
-        <p>Umpan balik jujur dari mereka yang sudah mencoba sistem CAT dan Bank Soal BrainUp.</p>
+        <h2>Lihat Sendiri Kualitas Soalnya</h2>
+        <p class="subtitle-garis">
+          <span>Pilih Kategori</span>
+          <span class="garis-pemisah"></span>
+          <span>TWK &bull; TIU &bull; TKP</span>
+        </p>
       </div>
 
-      <div class="grid-cards grid-3">
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Gila sih, soal TIU-nya beneran HOTS. Susah tapi ngerasa dapet banget polanya. Pas ngerjain tryout, berasa kayak lagi ngerjain soal asli BKN. Worth it!"</p>
-          <div class="testi-user">
-            <div class="testi-avatar">AN</div>
-            <div class="testi-info">
-              <h4>Andi Nugraha</h4>
-              <span>Peserta TryOut SKD</span>
-            </div>
+      <!-- TAB -->
+      <div class="soal-tabs">
+        <button class="soal-tab active" data-target="twk">TWK</button>
+        <button class="soal-tab" data-target="tiu">TIU</button>
+        <button class="soal-tab" data-target="tkp">TKP</button>
+      </div>
+
+      <!-- PANEL TWK -->
+      <div class="soal-panel active" id="panel-twk">
+        <div class="soal-slides">
+
+          <!-- Soal 1 -->
+      <div class="soal-card">
+        <span class="soal-badge">Soal 1 · Nasionalisme</span>
+        <h4>Partisipasi warga sipil dalam aksi simbolis seperti mengibarkan bendera setengah tiang bermakna ....</h4>
+        <ul class="soal-options">
+          <li class="correct">A. Warga menyatakan ikut merasakan duka yang menimpa bangsa sebagai satu keluarga besar.</li>
+          <li>B. Warga menunjukkan solidaritas kemanusiaan kepada korban tanpa memandang latar belakang.</li>
+          <li>C. Warga memperlihatkan kepedulian sosial yang merekatkan rasa persatuan antarwarga.</li>
+          <li>D. Warga menegaskan kebersamaan bangsa dalam menghadapi musibah yang terjadi.</li>
+          <li>E. Warga menjalankan sikap bela negara lewat simbol kebangsaan yang penuh makna.</li>
+        </ul>
+        <div class="soal-pembahasan">
+          <strong>Pembahasan:</strong> 
+          <a href="https://www.ipdn.ac.id/makna_lambang" target="_blank" class="btn-pembahasan">Lihat Pembahasan Lengkap</a>
+        </div>
+      </div>
+
+      <!-- Soal 2 -->
+      <div class="soal-card" style="display:none;">
+        <span class="soal-badge">Soal 2 · Nasionalisme</span>
+        <h4>Pergerakan nasional oleh kaum terpelajar lewat organisasi modern membuktikan bahwa ....</h4>
+        <ul class="soal-options">
+          <li class="correct">A. Pendidikan membuka jalan lahirnya kesadaran berbangsa di kalangan rakyat.</li>
+          <li>B. Kaum terpelajar tampil sebagai penggerak utama perjuangan nasional.</li>
+          <li>C. Organisasi modern menjadi wadah resmi perjuangan kebangsaan rakyat.</li>
+          <li>D. Kesadaran nasional tumbuh subur dari kalangan yang berpendidikan.</li>
+          <li>E. Perjuangan terorganisir lebih efektif daripada perlawanan fisik semata.</li>
+        </ul>
+        <div class="soal-pembahasan">
+          <strong>Pembahasan:</strong> 
+          <a href="https://www.ipdn.ac.id/makna_lambang" target="_blank" class="btn-pembahasan">Lihat Pembahasan Lengkap</a>
+        </div>
+      </div>
+
+      <!-- Soal 3 -->
+      <div class="soal-card" style="display:none;">
+        <span class="soal-badge">Soal 3 · Nilai-nilai Pancasila</span>
+        <h4>Pasal 33 ayat 1 UUD 1945 menyebut perekonomian disusun atas asas kekeluargaan. Apa tujuan konsep kekeluargaan itu dalam menumbuhkan nasionalisme ekonomi?</h4>
+        <ul class="soal-options">
+          <li>A. Kesejahteraan ekonomi dinikmati bersama oleh seluruh rakyat tanpa terkecuali.</li>
+          <li class="correct">B. Ekonomi dikelola sepenuhnya untuk kepentingan rakyat banyak, bukan segelintir orang.</li>
+          <li>C. Pemerataan hasil pembangunan ekonomi menjadi sasaran utama pengelolaan negara.</li>
+          <li>D. Semangat kebersamaan menjadi pendorong kemajuan ekonomi bersama masyarakat.</li>
+          <li>E. Kepentingan rakyat ditempatkan di atas kepentingan pribadi dalam pengelolaan ekonomi.</li>
+        </ul>
+        <div class="soal-pembahasan">
+          <strong>Pembahasan:</strong> 
+          <a href="https://www.ipdn.ac.id/makna_lambang" target="_blank" class="btn-pembahasan">Lihat Pembahasan Lengkap</a>
+        </div>
+      </div>
+
+      <!-- Soal 4 -->
+      <div class="soal-card" style="display:none;">
+        <span class="soal-badge">Soal 4 · Pilar Negara</span>
+        <h4>Pasal 28J ayat 1 UUD 1945 menyebut setiap orang wajib menghormati HAM orang lain. Perilaku seperti apa yang mencerminkan kesadaran nasionalisme berdasarkan pasal tersebut?</h4>
+        <ul class="soal-options">
+          <li>A. Menghargai hak orang lain dalam kehidupan bermasyarakat sehari-hari.</li>
+          <li>B. Tidak melanggar hak asasi orang lain saat menjalankan kebebasan sendiri.</li>
+          <li>C. Menjaga kebebasan diri agar tidak merugikan orang lain di sekitar.</li>
+          <li>D. Menghormati kebebasan berpendapat orang lain dalam setiap diskusi.</li>
+          <li class="correct">E. Menjalankan hak sendiri dengan tetap menghormati hak orang lain.</li>
+        </ul>
+        <div class="soal-pembahasan">
+          <strong>Pembahasan:</strong> 
+          <a href="https://www.ipdn.ac.id/makna_lambang" target="_blank" class="btn-pembahasan">Lihat Pembahasan Lengkap</a>
+        </div>
+      </div>
+
+      <!-- Soal 5 -->
+      <div class="soal-card" style="display:none;">
+        <span class="soal-badge">Soal 5 · Pilar Negara</span>
+        <h4>Ada anggapan bahwa keberagaman Indonesia menghambat kemajuan bangsa. Mengapa anggapan itu bertentangan dengan prinsip Bhinneka Tunggal Ika?</h4>
+        <ul class="soal-options">
+          <li class="correct">A. Keberagaman justru menjadi kekayaan yang memperkuat persatuan bangsa.</li>
+          <li>B. Perbedaan bukan penghalang kemajuan bila disikapi dengan toleransi.</li>
+          <li>C. Keragaman mendorong lahirnya kreativitas dan inovasi bagi bangsa.</li>
+          <li>D. Persatuan bangsa bisa terwujud tanpa harus menghapus keberagaman.</li>
+          <li>E. Bhinneka Tunggal Ika mengajarkan perbedaan tetap menyatu dalam satu bangsa.</li>
+        </ul>
+        <div class="soal-pembahasan">
+          <strong>Pembahasan:</strong> 
+          <a href="https://www.ipdn.ac.id/makna_lambang" target="_blank" class="btn-pembahasan">Lihat Pembahasan Lengkap</a>
+        </div>
+      </div>
+
+          <!-- SLIDE CTA (slide terakhir) -->
+          <div class="soal-cta-slide" style="display:none;">
+            <h3>Mau Latihan Lebih Banyak?</h3>
+            <p>Ini baru 6 contoh soal. Di TryOut BrainUp masih ada ribuan soal HOTS lain yang siap bikin kamu makin siap tempur.</p>
+            <a href="https://pilihan-to-skd.vercel.app/" class="btn-primary">Coba TryOut Gratis Sekarang</a>
+            <span class="soal-cta-note">Gratis · Tanpa kartu kredit · Skor keluar langsung</span>
           </div>
+
         </div>
 
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Awalnya kaget soalnya susah, tapi pas baca pembahasannya ternyata logikanya dapet. Katanya sih ini sesuai FR peserta-peserta sebelumnya. Jadi lebih siap buat ujian asli."</p>
-          <div class="testi-user">
-            <div class="testi-avatar">SR</div>
-            <div class="testi-info">
-              <h4>Siti Rahma</h4>
-              <span>Peserta TryOut STIS</span>
+        <!-- NAVIGASI TWK -->
+        <div class="soal-nav" data-panel="twk">
+          <button class="soal-nav-btn prev" disabled>&larr; Sebelumnya</button>
+          <span class="soal-nav-counter">Soal 1 / 2</span>
+          <button class="soal-nav-btn next">Berikutnya &rarr;</button>
+        </div>
+      </div>
+
+      <!-- PANEL TIU -->
+      <div class="soal-panel" id="panel-tiu">
+        <div class="soal-slides">
+
+          <!-- Soal 1 -->
+          <div class="soal-card">
+            <span class="soal-badge">TIU · Soal 1 · Persamaan Linear</span>
+            <h4>Jika 3x + 5 = 20, maka nilai 2x − 1 adalah…</h4>
+            <ul class="soal-options">
+              <li>A. 7</li>
+              <li class="correct">B. 9</li>
+              <li>C. 11</li>
+              <li>D. 13</li>
+            </ul>
+            <div class="soal-pembahasan">
+              <strong>Pembahasan:</strong> 3x = 15 → x = 5. Maka 2(5) − 1 = 9. Trik: selesaikan x dulu, baru substitusi.
             </div>
           </div>
+
+          <!-- Soal 2 -->
+          <div class="soal-card" style="display:none;">
+            <span class="soal-badge">TIU · Soal 2 · Deret Angka</span>
+            <h4>Deret: 2, 6, 12, 20, 30, … Bilangan berikutnya adalah…</h4>
+            <ul class="soal-options">
+              <li>A. 38</li>
+              <li>B. 40</li>
+              <li class="correct">C. 42</li>
+              <li>D. 44</li>
+            </ul>
+            <div class="soal-pembahasan">
+              <strong>Pembahasan:</strong> Selisih 4, 6, 8, 10 — bertambah 2 tiap langkah. Selisih berikutnya 12, jadi 30 + 12 = 42. Pola: n(n+1).
+            </div>
+          </div>
+
+          <!-- SLIDE CTA (slide terakhir) -->
+          <div class="soal-cta-slide" style="display:none;">
+            <h3>Mau Latihan Lebih Banyak?</h3>
+            <p>Ini baru 6 contoh soal. Di TryOut BrainUp masih ada ribuan soal HOTS lain yang siap bikin kamu makin siap tempur.</p>
+            <a href="https://pilihan-to-skd.vercel.app/" class="btn-primary">Coba TryOut Gratis Sekarang</a>
+            <span class="soal-cta-note">Gratis · Tanpa kartu kredit · Skor keluar langsung</span>
+          </div>
+
         </div>
 
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">"Banyak yang bilang tryout di sini soalnya susah dan bikin pusing. Tapi justru itu yang bikin gw ketagihan belajar. Sistem CAT-nya mulus, skornya keluar langsung. Mantap!"</p>
-          <div class="testi-user">
-            <div class="testi-avatar">BP</div>
-            <div class="testi-info">
-              <h4>Bayu Pratama</h4>
-              <span>Peserta TryOut Polri</span>
+        <!-- NAVIGASI TIU -->
+        <div class="soal-nav" data-panel="tiu">
+          <button class="soal-nav-btn prev" disabled>&larr; Sebelumnya</button>
+          <span class="soal-nav-counter">Soal 1 / 2</span>
+          <button class="soal-nav-btn next">Berikutnya &rarr;</button>
+        </div>
+      </div>
+
+      <!-- PANEL TKP -->
+      <div class="soal-panel" id="panel-tkp">
+        <div class="soal-slides">
+
+          <!-- Soal 1 -->
+          <div class="soal-card">
+            <span class="soal-badge">Soal 1 · Pelayanan Publik</span>
+            <h4>Warga kesulitan menggunakan layanan administrasi digital karena jaringan internet lemah. Apa yang Anda usulkan?</h4>
+            <ul class="soal-options">
+              <li>A. Menyediakan loket bantuan bagi warga yang gagal mengakses layanan digital.</li>
+              <li class="correct">B. Menyediakan formulir digital ringan agar warga tetap terlayani lewat jaringan lemah.</li>
+              <li>C. Menjadwalkan pelayanan keliling untuk membantu warga mengurus administrasi.</li>
+              <li>D. Mengembangkan layanan luring bagi wilayah yang belum terjangkau internet memadai.</li>
+              <li>E. Mendata wilayah terkendala internet sebagai dasar penyesuaian pelayanan warga.</li>
+            </ul>
+            <div class="soal-pembahasan">
+              <strong>Pembahasan:</strong> 
+              <a href="https://www.ipdn.ac.id/makna_lambang" target="_blank" class="btn-pembahasan">Lihat Pembahasan Lengkap</a>
             </div>
           </div>
+
+          <!-- Soal 2 -->
+          <div class="soal-card" style="display:none;">
+            <span class="soal-badge">Soal 2 · Pelayanan Publik</span>
+            <h4>Bukti domisili warga berbeda antara dua dokumen akibat perubahan batas administratif. Apa yang Anda lakukan?</h4>
+            <ul class="soal-options">
+              <li>A. Memeriksa dokumen warga dan mengidentifikasi perbedaan data alamatnya.</li>
+              <li>B. Menelusuri ketentuan administrasi untuk menentukan bukti domisili yang sah.</li>
+              <li>C. Meminta warga melengkapi dokumen pendukung riwayat perubahan alamat.</li>
+              <li class="correct">D. Mengonfirmasi perubahan batas wilayah ke instansi berwenang sebelum memproses layanan.</li>
+              <li>E. Mengarahkan warga meminta klarifikasi tertulis dari instansi terkait.</li>
+            </ul>
+            <div class="soal-pembahasan">
+              <strong>Pembahasan:</strong> 
+              <a href="https://www.ipdn.ac.id/makna_lambang" target="_blank" class="btn-pembahasan">Lihat Pembahasan Lengkap</a>
+            </div>
+          </div>
+
+          <!-- Soal 3 -->
+          <div class="soal-card" style="display:none;">
+            <span class="soal-badge">Soal 3 · Jejaring Kerja</span>
+            <h4>Rudi staf di lembaga pemerintah. Ia harus bekerja sama dengan lembaga swasta yang memiliki siklus anggaran berbeda, sehingga kegiatan bersama sulit diselaraskan. Rudi menyikapi kondisi itu dengan ....</h4>
+            <ul class="soal-options">
+              <li>A. Menjadi penghubung agar informasi siklus anggaran mitra tersampaikan ke tim.</li>
+              <li>B. Membangun komunikasi rutin dengan mitra untuk menyelaraskan waktu pelaksanaan.</li>
+              <li>C. Menyusun rencana kegiatan fleksibel yang mengakomodasi perbedaan siklus anggaran.</li>
+              <li>D. Berkoordinasi dengan mitra mencari titik temu jadwal yang saling menguntungkan.</li>
+              <li class="correct">E. Menyepakati jadwal kegiatan bersama yang mempertimbangkan siklus anggaran kedua pihak.</li>
+            </ul>
+            <div class="soal-pembahasan">
+              <strong>Pembahasan:</strong> 
+              <a href="https://www.ipdn.ac.id/makna_lambang" target="_blank" class="btn-pembahasan">Lihat Pembahasan Lengkap</a>
+            </div>
+          </div>
+
+          <!-- Soal 4 -->
+          <div class="soal-card" style="display:none;">
+            <span class="soal-badge">Soal 4 · Profesionalisme</span>
+            <h4>Rudi staf analis diminta menyelesaikan laporan dalam waktu singkat. Ia tahu laporan bisa selesai cepat jika beberapa bagian dianalisis secara dangkal. Rudi menyikapi hal itu dengan ....</h4>
+            <ul class="soal-options">
+              <li>A. Menyusun laporan cepat dengan penanda eksplisit bagian yang belum tuntas.</li>
+              <li>B. Meminta tambahan waktu disertai penjelasan risiko mutu jika dipercepat.</li>
+              <li>C. Memetakan bagian paling kritis untuk dianalisis mendalam, sisanya diringkas.</li>
+              <li>D. Mempercepat penyusunan format sambil mempertahankan kedalaman substansi.</li>
+              <li class="correct">E. Menjaga standar analisis semua bagian meski harus menegosiasikan tenggat.</li>
+            </ul>
+            <div class="soal-pembahasan">
+              <strong>Pembahasan:</strong> 
+              <a href="https://www.ipdn.ac.id/makna_lambang" target="_blank" class="btn-pembahasan">Lihat Pembahasan Lengkap</a>
+            </div>
+          </div>
+
+          <!-- Soal 5 -->
+          <div class="soal-card" style="display:none;">
+            <span class="soal-badge">Soal 5 · Profesionalisme</span>
+            <h4>Sinta petugas entri data menemukan cara mempercepat input dengan menyalin data dari entri sebelumnya. Sinta menyikapi temuan itu dengan ....</h4>
+            <ul class="soal-options">
+              <li>A. Menggunakan cara cepat itu secara terbatas dengan verifikasi ganda.</li>
+              <li>B. Menerapkan penyalinan hanya pada data identik dan memverifikasi hasilnya.</li>
+              <li>C. Menguji cara tersebut pada sampel entri untuk mengukur risiko kesalahan.</li>
+              <li class="correct">D. Mengusulkan standar penyalinan yang aman kepada pengelola data.</li>
+              <li>E. Mendokumentasikan prosedur penyalinan agar rekan kerja mengikuti dengan benar.</li>
+            </ul>
+            <div class="soal-pembahasan">
+              <strong>Pembahasan:</strong> 
+              <a href="https://www.ipdn.ac.id/makna_lambang" target="_blank" class="btn-pembahasan">Lihat Pembahasan Lengkap</a>
+            </div>
+          </div>
+
+          <!-- SLIDE CTA (slide terakhir) -->
+          <div class="soal-cta-slide" style="display:none;">
+            <h3>Mau Latihan Lebih Banyak?</h3>
+            <p>Ini baru beberapa contoh soal. Di TryOut BrainUp masih ada ribuan soal HOTS lain yang siap bikin kamu makin siap tempur.</p>
+            <a href="https://pilihan-to-skd.vercel.app/" class="btn-primary">Coba TryOut Gratis Sekarang</a>
+            <span class="soal-cta-note">Gratis · Tanpa kartu kredit · Skor keluar langsung</span>
+          </div>
+
+        </div>
+
+        <!-- NAVIGASI TKP -->
+        <div class="soal-nav" data-panel="tkp">
+          <button class="soal-nav-btn prev" disabled>&larr; Sebelumnya</button>
+          <span class="soal-nav-counter">Soal 1 / 5</span>
+          <button class="soal-nav-btn next">Berikutnya &rarr;</button>
         </div>
       </div>
     </div>
@@ -558,8 +1317,13 @@
   <!-- CTA SECTION -->
   <section class="cta-section">
     <h2>Siap Uji Kemampuanmu?</h2>
-    <p>Jangan cuma dengar kata orang. Buktikan sendiri bahwa soal BrainUp memang HOTS dan mirip dengan ujian asli.</p>
-    <button onclick="bukaModalWa()" class="btn-primary">Coba TryOut Sekarang</button>
+    <p>Jangan cuma dengar kata orang. Buktikan sendiri bahwa soal BrainUp memang HOTS dan mirip ujian asli.</p>
+    <a href="https://pilihan-to-skd.vercel.app/" class="btn-primary">Coba TryOut Gratis Sekarang</a>
+    <div class="cta-features">
+      <span>Gratis, tanpa kartu kredit</span>
+      <span>Skor keluar langsung</span>
+      <span>Pembahasan lengkap</span>
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -585,28 +1349,31 @@
           </div>
         </div>
 
-        <div class="footer-col">
-          <h4>Program</h4>
-          <a href="#">CPNS</a>
-          <a href="https://pilihan-kelas-kedinasan.vercel.app/">Kedinasan</a>
-          <a href="#">TNI</a>
-          <a href="#">POLRI</a>
-        </div>
+        <!-- Wrapper kolom footer: desktop=contents (3 kolom sejajar), mobile=grid 2 kolom -->
+        <div class="footer-cols-wrapper">
+          <div class="footer-col">
+            <h4>Program</h4>
+            <a href="#program">CPNS</a>
+            <a href="https://pilihan-kelas-kedinasan.vercel.app/">Kedinasan</a>
+            <a href="#program">TNI</a>
+            <a href="#program">POLRI</a>
+          </div>
 
-        <div class="footer-col">
-          <h4>Perusahaan</h4>
-          <a href="#">Tentang Kami</a>
-          <a href="#">Blog Edukasi</a>
-          <a href="#">Karier</a>
-          <a href="#">Kontak</a>
-        </div>
+          <div class="footer-col">
+            <h4>Perusahaan</h4>
+            <a href="#">Tentang Kami</a>
+            <a href="#">Blog Edukasi</a>
+            <a href="#">Karier</a>
+            <a href="#">Kontak</a>
+          </div>
 
-        <div class="footer-col">
-          <h4>Bantuan</h4>
-          <a href="#">FAQ</a>
-          <a href="#">Pusat Bantuan</a>
-          <a href="#">Kebijakan Privasi</a>
-          <a href="#">Syarat & Ketentuan</a>
+          <div class="footer-col">
+            <h4>Bantuan</h4>
+            <a href="#">FAQ</a>
+            <a href="#">Pusat Bantuan</a>
+            <a href="#">Kebijakan Privasi</a>
+            <a href="#">Syarat & Ketentuan</a>
+          </div>
         </div>
 
       </div>
@@ -649,7 +1416,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Target / Kelas</label>
+          <label>Target Seleksi</label>
           <select id="waTarget" required>
             <option value="" disabled selected>Pilih target...</option>
             <option value="CPNS">CPNS</option>
@@ -691,6 +1458,32 @@
   </div>
 
   <script>
+    // --- HAMBURGER MENU ---
+    function toggleMenu() {
+      const toggle = document.getElementById('navToggle');
+      const menu = document.getElementById('mobileMenu');
+      toggle.classList.toggle('active');
+      menu.classList.toggle('active');
+    }
+
+    function tutupMenu() {
+      const toggle = document.getElementById('navToggle');
+      const menu = document.getElementById('mobileMenu');
+      toggle.classList.remove('active');
+      menu.classList.remove('active');
+    }
+
+    // Klik di luar menu → tutup
+    document.addEventListener('click', function(e) {
+      const toggle = document.getElementById('navToggle');
+      const menu = document.getElementById('mobileMenu');
+      if (menu.classList.contains('active') && 
+          !menu.contains(e.target) && 
+          !toggle.contains(e.target)) {
+        tutupMenu();
+      }
+    });
+
     // --- SCRIPT MODAL WA ---
     function bukaModalWa() {
       document.getElementById('modalWa').classList.add('active');
@@ -732,6 +1525,65 @@
 
     document.getElementById('modalProgram').addEventListener('click', function(e) { 
       if (e.target === this) { tutupModalProgram(); } 
+    });
+
+    // --- TAB CONTOH SOAL ---
+    const soalTabs = document.querySelectorAll('.soal-tab');
+    const soalPanels = document.querySelectorAll('.soal-panel');
+
+    soalTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        soalTabs.forEach(t => t.classList.remove('active'));
+        soalPanels.forEach(p => p.classList.remove('active'));
+
+        tab.classList.add('active');
+        const target = tab.dataset.target;
+        const panel = document.getElementById('panel-' + target);
+        if (panel) panel.classList.add('active');
+      });
+    });
+
+    // --- NAVIGASI SOAL (SEBELUMNYA / BERIKUTNYA) ---
+    document.querySelectorAll('.soal-nav').forEach(nav => {
+      const panelId = nav.dataset.panel;
+      const panel = document.getElementById('panel-' + panelId);
+      if (!panel) return;
+
+      // Ambil SEMUA slide (termasuk CTA di akhir)
+      const slides = panel.querySelectorAll('.soal-slides > *');
+      const prevBtn = nav.querySelector('.prev');
+      const nextBtn = nav.querySelector('.next');
+      const counter = nav.querySelector('.soal-nav-counter');
+      let current = 0;
+
+      // Hitung jumlah soal saja (tanpa CTA) untuk label counter
+      const totalSoal = panel.querySelectorAll('.soal-card').length;
+
+      function render() {
+        slides.forEach((slide, i) => {
+          slide.style.display = (i === current) ? 'block' : 'none';
+        });
+
+        // Kalau slide terakhir (CTA), tampilkan label "Selesai"
+        if (current === slides.length - 1) {
+          counter.textContent = `Selesai · ${totalSoal} Soal`;
+        } else {
+          counter.textContent = `Soal ${current + 1} / ${totalSoal}`;
+        }
+
+        prevBtn.disabled = (current === 0);
+        nextBtn.disabled = (current === slides.length - 1);
+      }
+
+      prevBtn.addEventListener('click', () => {
+        if (current > 0) { current--; render(); }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (current < slides.length - 1) { current++; render(); }
+      });
+
+      render();
     });
   </script>
 
